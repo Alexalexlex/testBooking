@@ -13,7 +13,9 @@ export class UsersService {
   ) {}
 
   async findAll(): Promise<User[]> {
-    return await this.userRepository.find();
+    return await this.userRepository.find({
+      relations: ['roles'],
+    });
   }
 
   async create(user: CreateUserDto): Promise<User> {

@@ -1,5 +1,6 @@
-import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
+import { Entity, Column, ManyToMany, JoinTable } from 'typeorm';
 import { BaseEntity } from '../base-entity';
+import { Roles } from './roles.entity';
 
 @Entity('users')
 export class User extends BaseEntity {
@@ -11,4 +12,9 @@ export class User extends BaseEntity {
   email: string;
   @Column({ type: 'varchar', length: 100, nullable: false })
   password: string;
+  @ManyToMany(() => Roles, roles => roles.id, {
+    cascade: true
+  })
+  @JoinTable()
+  roles: Roles[];
 }
