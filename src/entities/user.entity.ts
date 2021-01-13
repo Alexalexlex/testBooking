@@ -12,9 +12,7 @@ export class User extends BaseEntity {
   email: string;
   @Column({ type: 'varchar', length: 100, nullable: false })
   password: string;
-  @ManyToMany(() => Roles, roles => roles.id, {
-    cascade: true
-  })
+  @ManyToMany(() => Roles, roles => roles)
   @JoinTable()
   roles: Roles[];
 }
