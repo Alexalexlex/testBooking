@@ -3,7 +3,7 @@ export const config: TypeOrmModuleOptions = {
   type: 'postgres',
   port: 5432,
   host: 'localhost',
-  database: 'typeorm',
+  database: 'bookingTest',
   synchronize: true,
   username: 'alexalexlex',
   password: '123',
