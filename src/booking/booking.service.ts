@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, HttpException, HttpStatus } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Booking } from 'src/entities/booking.entity';
 import { Repository } from 'typeorm';
@@ -60,6 +60,13 @@ export class BookingService {
             ...rest
          } = toBook
 
+         const rooms = await this.roomsRepository.find()
+
+         
+             if (!rooms[toBook.roomId]) {
+                 throw new HttpException(`This room doesn't exist`, HttpStatus.BAD_REQUEST);
+             }
+         
         const booking = {
             ...rest,
             checkInDate: new Date(toBook.checkInDate),
