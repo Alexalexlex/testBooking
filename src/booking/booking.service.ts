@@ -62,8 +62,7 @@ export class BookingService {
 
          const rooms = await this.roomsRepository.find()
 
-         
-             if (!rooms[toBook.roomId]) {
+             if (!rooms[toBook.roomId-1]) {
                  throw new HttpException(`This room doesn't exist`, HttpStatus.BAD_REQUEST);
              }
          
